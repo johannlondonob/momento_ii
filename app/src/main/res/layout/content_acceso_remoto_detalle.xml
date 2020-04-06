@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:gravity="center|start"
+                android:text="Detalles del equipo"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
+
+            <!--<TextView
+                    android:id="@+id/textViewNombreEntidadDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Nombre del equipo:"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textViewNombreEquipoAccesoRemotoDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:editable="false"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:inputType="none"
+                android:paddingLeft="7dp"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textIsSelectable="true"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="IP pública:"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textViewIpPublicaAccesoRemotoDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:editable="false"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:inputType="none"
+                android:paddingLeft="7dp"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textIsSelectable="true"
+                android:textSize="12sp"
+                android:typeface="monospace" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="IP privada:"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textViewIpPrivadaAccesoRemotoDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:editable="false"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:inputType="none"
+                android:paddingLeft="7dp"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textIsSelectable="true"
+                android:textSize="12sp"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:gravity="center|start"
+                    android:text="Usuarios"
+                    android:textSize="18sp"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/textViewMensajeUsuariosAccesoRemotoDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:layout_weight="0"
+                    android:drawableStart="@drawable/ic_warning_secondary_dark_small"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_vertical"
+                    android:text="No hay registros de usuarios remotos para este equipo"
+                    android:textColor="@color/colorSecondaryDark"
+                    android:textSize="10sp" />
+
+                <include
+                    layout="@layout/content_usuario_acceso_remoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--<TextView
+                    android:id="@+id/textViewNombreEntidadDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />-->
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

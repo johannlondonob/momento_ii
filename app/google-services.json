@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "338743982074",
+    "firebase_url": "https://appdocumenting.firebaseio.com",
+    "project_id": "appdocumenting",
+    "storage_bucket": "appdocumenting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338743982074:android:aca6e38e0ef686e30b9643",
+        "android_client_info": {
+          "package_name": "com.example.appdocumenting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338743982074-03v8b9395ri4sp24avgrvmq7qljaj96o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFLqeXfMt44oLOIYLxgS3iCIGju5bMsOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338743982074-03v8b9395ri4sp24avgrvmq7qljaj96o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338743982074:android:5f01c4b0ed1fd9130b9643",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338743982074-03v8b9395ri4sp24avgrvmq7qljaj96o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFLqeXfMt44oLOIYLxgS3iCIGju5bMsOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338743982074-03v8b9395ri4sp24avgrvmq7qljaj96o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338743982074:android:66692dc07f1ff0190b9643",
+        "android_client_info": {
+          "package_name": "com.johannlondonob.momentoii"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338743982074-03v8b9395ri4sp24avgrvmq7qljaj96o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFLqeXfMt44oLOIYLxgS3iCIGju5bMsOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338743982074-03v8b9395ri4sp24avgrvmq7qljaj96o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
