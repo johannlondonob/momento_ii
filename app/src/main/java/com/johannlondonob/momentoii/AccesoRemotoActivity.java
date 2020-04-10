@@ -27,11 +27,11 @@ import java.util.ArrayList;
 
 public class AccesoRemotoActivity extends AppCompatActivity {
 
-    private AccesoRemotoModel accesoRemotoModel;
+    private AccesoRemotoModel model;
     private String idEntidad, nombreEntidad, idAccesoRemoto;
     private ArrayList<AccesoRemotoModel> arrayList;
-    private ProgressBar progressBarAccesoRemotoActivity;
-    private ListView listViewAccesosRemotos;
+    private ProgressBar progressBar;
+    private ListView listView;
     private FloatingActionButton fabAgregarAccesoRemoto;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -42,27 +42,27 @@ public class AccesoRemotoActivity extends AppCompatActivity {
         idEntidad = getIntent().getStringExtra("idEntidad");
         nombreEntidad = getIntent().getStringExtra("nombreEntidad");
         AccesoRemotoActivity.this.setTitle(nombreEntidad);
-        accesoRemotoModel = new AccesoRemotoModel();
+        model = new AccesoRemotoModel();
 
         final DatabaseReference reference = database.getReference("accesos_remotos/" + idEntidad);
 
-        progressBarAccesoRemotoActivity = findViewById(R.id.progressBarAccesoRemotoActivity);
+        progressBar = findViewById(R.id.progressBarAccesoRemotoActivity);
         fabAgregarAccesoRemoto = findViewById(R.id.fabAgregarAccesoRemoto);
-        listViewAccesosRemotos = findViewById(R.id.listViewAccesoRemoto);
+        listView = findViewById(R.id.listViewAccesoRemoto);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                accesoRemotoModel = new AccesoRemotoModel();
+                model = new AccesoRemotoModel();
                 arrayList = new ArrayList<>();
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    accesoRemotoModel = child.getValue(AccesoRemotoModel.class);
-                    arrayList.add(accesoRemotoModel);
+                    model = child.getValue(AccesoRemotoModel.class);
+                    arrayList.add(model);
                 }
 
                 if (arrayList.size() <= 0) {
-                    progressBarAccesoRemotoActivity.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
                     Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "No hay registros para mostrar. ¿Desea crear uno?", Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction("Sí, seguro", new View.OnClickListener() {
                         @Override
@@ -76,8 +76,8 @@ public class AccesoRemotoActivity extends AppCompatActivity {
                     });
                     snackbar.show();
                 } else {
-                    listViewAccesosRemotos.setAdapter(new AccesoRemotoAdapter(AccesoRemotoActivity.this, arrayList));
-                    progressBarAccesoRemotoActivity.setVisibility(View.GONE);
+                    listView.setAdapter(new AccesoRemotoAdapter(AccesoRemotoActivity.this, arrayList));
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
@@ -88,13 +88,13 @@ public class AccesoRemotoActivity extends AppCompatActivity {
             }
         });
 
-        listViewAccesosRemotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                accesoRemotoModel = (AccesoRemotoModel) parent.getItemAtPosition(position);
-                if (accesoRemotoModel.get_id() != null && !accesoRemotoModel.get_id().equals("")) {
-                    idEntidad = accesoRemotoModel.get_idEntidad();
-                    idAccesoRemoto = accesoRemotoModel.get_id();
+                model = (AccesoRemotoModel) parent.getItemAtPosition(position);
+                if (model.get_id() != null && !model.get_id().equals("")) {
+                    idEntidad = model.get_idEntidad();
+                    idAccesoRemoto = model.get_id();
                     Intent detalleAccesoRemoto = new Intent(AccesoRemotoActivity.this, AccesoRemotoDetalleActivity.class);
                     detalleAccesoRemoto.putExtra("idEntidad", idEntidad);
                     detalleAccesoRemoto.putExtra("idAccesoRemoto", idAccesoRemoto);

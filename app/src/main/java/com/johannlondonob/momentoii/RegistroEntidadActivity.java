@@ -21,9 +21,9 @@ public class RegistroEntidadActivity extends AppCompatActivity {
 
     private EntidadModel model;
     private String id, nombre, direccion, telefono1, telefono2, email;
-    private EditText editTextNombreEntidadRegistro, editTextDireccionEntidadRegistro, editTextTelefono1EntidadRegistro, editTextTelfono2EntidadRegistro, editTextEmailEntidadRegistro;
+    private EditText editTextNombre, editTextDireccion, editTextTelefono1, editTextTelfono2, editTextEmail;
     private FloatingActionButton fabRegistrarEntidad;
-    private ProgressBar progressBarRegistroEntidad;
+    private ProgressBar progressBar;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference("entidad");
     private boolean actualizar = false;
@@ -34,14 +34,14 @@ public class RegistroEntidadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registro_entidad);
         Bundle bundle = getIntent().getExtras();
 
-        progressBarRegistroEntidad = findViewById(R.id.progressBarRegistroEntidad);
+        progressBar = findViewById(R.id.progressBarRegistroEntidad);
         fabRegistrarEntidad = findViewById(R.id.fabRegistrarEntidad);
 
-        editTextNombreEntidadRegistro = findViewById(R.id.editTextNombreEntidadRegistro);
-        editTextDireccionEntidadRegistro = findViewById(R.id.editTextDireccionEntidadRegistro);
-        editTextTelefono1EntidadRegistro = findViewById(R.id.editTextTelefonoUnoRegistro);
-        editTextTelfono2EntidadRegistro = findViewById(R.id.editTextTelefonoDosEntidadRegistro);
-        editTextEmailEntidadRegistro = findViewById(R.id.editTextEmailEntidadRegistro);
+        editTextNombre = findViewById(R.id.editTextNombreEntidadRegistro);
+        editTextDireccion = findViewById(R.id.editTextDireccionEntidadRegistro);
+        editTextTelefono1 = findViewById(R.id.editTextTelefonoUnoRegistro);
+        editTextTelfono2 = findViewById(R.id.editTextTelefonoDosEntidadRegistro);
+        editTextEmail = findViewById(R.id.editTextEmailEntidadRegistro);
 
         if (bundle != null) {
             RegistroEntidadActivity.this.setTitle("Actualización de datos");
@@ -52,27 +52,27 @@ public class RegistroEntidadActivity extends AppCompatActivity {
             telefono2 = getIntent().getStringExtra("telefono2Entidad");
             email = getIntent().getStringExtra("emailEntidad");
 
-            editTextNombreEntidadRegistro.setText(nombre);
-            editTextDireccionEntidadRegistro.setText(direccion);
-            editTextTelefono1EntidadRegistro.setText(telefono1);
-            editTextTelfono2EntidadRegistro.setText(telefono2);
-            editTextEmailEntidadRegistro.setText(email);
+            editTextNombre.setText(nombre);
+            editTextDireccion.setText(direccion);
+            editTextTelefono1.setText(telefono1);
+            editTextTelfono2.setText(telefono2);
+            editTextEmail.setText(email);
             actualizar = true;
         }
 
         fabRegistrarEntidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                nombre = editTextNombreEntidadRegistro.getText().toString();
-                direccion = editTextDireccionEntidadRegistro.getText().toString();
-                telefono1 = editTextTelefono1EntidadRegistro.getText().toString();
-                telefono2 = editTextTelfono2EntidadRegistro.getText().toString();
-                email = editTextEmailEntidadRegistro.getText().toString();
+                nombre = editTextNombre.getText().toString();
+                direccion = editTextDireccion.getText().toString();
+                telefono1 = editTextTelefono1.getText().toString();
+                telefono2 = editTextTelfono2.getText().toString();
+                email = editTextEmail.getText().toString();
 
                 if (nombre.equals("") || direccion.equals("") || email.equals("") || telefono1.equals("") || telefono2.equals("")) {
                     Toast.makeText(RegistroEntidadActivity.this, "Hay campos obligatorios sin llenar", Toast.LENGTH_SHORT).show();
                 } else {
-                    progressBarRegistroEntidad.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
                     if (!actualizar) {
                         id = reference.push().getKey();
                     }
@@ -84,7 +84,7 @@ public class RegistroEntidadActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         LimpiarControles();
-                                        progressBarRegistroEntidad.setVisibility(View.GONE);
+                                        progressBar.setVisibility(View.GONE);
                                         if (actualizar) {
                                             Toast.makeText(RegistroEntidadActivity.this, "Datos actualizados", Toast.LENGTH_LONG).show();
                                         } else {
@@ -98,7 +98,7 @@ public class RegistroEntidadActivity extends AppCompatActivity {
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        progressBarRegistroEntidad.setVisibility(View.GONE);
+                                        progressBar.setVisibility(View.GONE);
                                         Toast.makeText(RegistroEntidadActivity.this, "No fue posible guardar el registro. Inténtalo más tarde", Toast.LENGTH_SHORT).show();
                                         onBackPressed();
                                     }
@@ -113,10 +113,10 @@ public class RegistroEntidadActivity extends AppCompatActivity {
     }
 
     public void LimpiarControles() {
-        editTextNombreEntidadRegistro.setText("");
-        editTextDireccionEntidadRegistro.setText("");
-        editTextTelefono1EntidadRegistro.setText("");
-        editTextTelfono2EntidadRegistro.setText("");
-        editTextEmailEntidadRegistro.setText("");
+        editTextNombre.setText("");
+        editTextDireccion.setText("");
+        editTextTelefono1.setText("");
+        editTextTelfono2.setText("");
+        editTextEmail.setText("");
     }
 }

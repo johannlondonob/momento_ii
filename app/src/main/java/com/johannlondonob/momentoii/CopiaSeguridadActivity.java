@@ -26,9 +26,9 @@ public class CopiaSeguridadActivity extends AppCompatActivity {
 
     private String idEntidad, nombreEntidad;
     private CopiaSeguridadModel model;
-    private ArrayList<CopiaSeguridadModel> listModel;
-    private ListView listViewCopiaSeguridad;
-    private ProgressBar progressBarRegistroCopiaSeguridad;
+    private ArrayList<CopiaSeguridadModel> list;
+    private ListView listView;
+    private ProgressBar progressBar;
     private FloatingActionButton fabAgregarCopiaSeguridad;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -44,24 +44,24 @@ public class CopiaSeguridadActivity extends AppCompatActivity {
             CopiaSeguridadActivity.this.setTitle(nombreEntidad);
         }
 
-        listViewCopiaSeguridad = findViewById(R.id.listViewCopiaSeguridad);
+        listView = findViewById(R.id.listViewCopiaSeguridad);
         fabAgregarCopiaSeguridad = findViewById(R.id.fabAgregarCopiaSeguridad);
-        progressBarRegistroCopiaSeguridad = findViewById(R.id.progressBarCopiaSeguridadActivity);
+        progressBar = findViewById(R.id.progressBarCopiaSeguridadActivity);
         final DatabaseReference reference = database.getReference("copias_seguridad/" + idEntidad);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 model = new CopiaSeguridadModel();
-                listModel = new ArrayList<>();
+                list = new ArrayList<>();
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     model = (CopiaSeguridadModel) child.getValue(CopiaSeguridadModel.class);
-                    listModel.add(model);
+                    list.add(model);
                 }
 
-                if (listModel.size() <= 0) {
-                    progressBarRegistroCopiaSeguridad.setVisibility(View.GONE);
+                if (list.size() <= 0) {
+                    progressBar.setVisibility(View.GONE);
                     Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "No hay registros. ¿Desea crear uno?", Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction("Sí, seguro", new View.OnClickListener() {
                         @Override
@@ -74,8 +74,8 @@ public class CopiaSeguridadActivity extends AppCompatActivity {
                     });
                     snackbar.show();
                 } else {
-                    progressBarRegistroCopiaSeguridad.setVisibility(View.GONE);
-                    listViewCopiaSeguridad.setAdapter(new CopiaSeguridadAdapter(CopiaSeguridadActivity.this, listModel));
+                    progressBar.setVisibility(View.GONE);
+                    listView.setAdapter(new CopiaSeguridadAdapter(CopiaSeguridadActivity.this, list));
                 }
             }
 

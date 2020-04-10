@@ -31,7 +31,7 @@ public class RegistroAccesoRemotoActivity extends AppCompatActivity {
     private EditText editTextNombreEquipo, editTextIpPublica, editTextIpPrivada;
     String nombreEntidad, nombreEquipo, ipPublica, ipPrivada;
     private String idEntidad, idAccesoRemoto;
-    private AccesoRemotoModel accesoRemotoModel;
+    private AccesoRemotoModel model;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private boolean actualizar = false;
 
@@ -88,8 +88,8 @@ public class RegistroAccesoRemotoActivity extends AppCompatActivity {
                     }
 
                     if (idAccesoRemoto != null) {
-                        accesoRemotoModel = new AccesoRemotoModel(idAccesoRemoto, idEntidad, nombreEquipo, ipPublica, ipPrivada);
-                        reference.child(idAccesoRemoto).setValue(accesoRemotoModel)
+                        model = new AccesoRemotoModel(idAccesoRemoto, idEntidad, nombreEquipo, ipPublica, ipPrivada);
+                        reference.child(idAccesoRemoto).setValue(model)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

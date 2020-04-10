@@ -24,13 +24,13 @@ import com.johannlondonob.momentoii.model.UsuarioAccesoRemotoModel;
 
 public class RegistroUsuarioAccesoRemotoActivity extends AppCompatActivity {
 
-    private ProgressBar progressBarUsuarioAccesoRemoto;
+    private ProgressBar progressBar;
     private FloatingActionButton fabRegistrarUsuarioAccesoRemoto;
     private EditText editTextUsuario, editTextClaveUsuario, editTextAsignado, editTextTelefonoAsignado;
     private boolean swAdmin;
-    private Switch switchAdminRegistroAccesoRemoto;
+    private Switch switchAdmin;
     private String idEntidad, idAccesoRemoto, idUsuarioAccesoRemoto, nombreEntidad, nombreEquipo, usuarioRemoto, claveRemoto, remotoAsignado, telefonoAsignado;
-    private UsuarioAccesoRemotoModel usuarioAccesoRemotoModel;
+    private UsuarioAccesoRemotoModel model;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private boolean actualizar = false;
 
@@ -39,13 +39,13 @@ public class RegistroUsuarioAccesoRemotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario_acceso_remoto);
         Bundle bundle = getIntent().getExtras();
-        progressBarUsuarioAccesoRemoto = findViewById(R.id.progressBarUsuarioAccesoRemoto);
+        progressBar = findViewById(R.id.progressBarUsuarioAccesoRemoto);
         fabRegistrarUsuarioAccesoRemoto = findViewById(R.id.fabRegistrarUsuarioAccesoRemoto);
         editTextUsuario = findViewById(R.id.editTextUsuarioRegistroAccesoRemoto);
         editTextClaveUsuario = findViewById(R.id.editTextClaveUsuarioRegistroAccesoRemoto);
         editTextAsignado = findViewById(R.id.editTextAsignadoRegistroAccesoRemoto);
         editTextTelefonoAsignado = findViewById(R.id.editTextTelefonoAsignadoRegistroAccesoRemoto);
-        switchAdminRegistroAccesoRemoto = findViewById(R.id.switchAdminRegistroAccesoRemoto);
+        switchAdmin = findViewById(R.id.switchAdminRegistroAccesoRemoto);
 
         if (bundle != null) {
             idUsuarioAccesoRemoto = getIntent().getStringExtra("idUsuarioAccesoRemoto");
@@ -64,20 +64,20 @@ public class RegistroUsuarioAccesoRemotoActivity extends AppCompatActivity {
                 editTextClaveUsuario.setText(claveRemoto);
                 editTextAsignado.setText(remotoAsignado);
                 editTextTelefonoAsignado.setText(telefonoAsignado);
-                switchAdminRegistroAccesoRemoto.setChecked(swAdmin);
+                switchAdmin.setChecked(swAdmin);
 
                 editTextUsuario.setEnabled(false);
                 editTextClaveUsuario.setEnabled(false);
                 editTextAsignado.setEnabled(false);
                 editTextTelefonoAsignado.setEnabled(false);
-                switchAdminRegistroAccesoRemoto.setEnabled(false);
+                switchAdmin.setEnabled(false);
                 actualizar = true;
             }
         }
         RegistroUsuarioAccesoRemotoActivity.this.setTitle("Nuevo usuario remoto en " + nombreEntidad);
         final DatabaseReference reference = database.getReference("accesos_remotos/" + idEntidad + "/" + idAccesoRemoto + "/usuarios_remotos");
 
-        switchAdminRegistroAccesoRemoto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchAdmin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 swAdmin = isChecked;
@@ -99,8 +99,8 @@ public class RegistroUsuarioAccesoRemotoActivity extends AppCompatActivity {
                         idUsuarioAccesoRemoto = reference.push().getKey();
                     }
                     if (idUsuarioAccesoRemoto != null && !idUsuarioAccesoRemoto.equals("")) {
-                        usuarioAccesoRemotoModel = new UsuarioAccesoRemotoModel(idUsuarioAccesoRemoto, idEntidad, idAccesoRemoto, usuarioRemoto, claveRemoto, remotoAsignado, telefonoAsignado, swAdmin);
-                        reference.child(idUsuarioAccesoRemoto).setValue(usuarioAccesoRemotoModel)
+                        model = new UsuarioAccesoRemotoModel(idUsuarioAccesoRemoto, idEntidad, idAccesoRemoto, usuarioRemoto, claveRemoto, remotoAsignado, telefonoAsignado, swAdmin);
+                        reference.child(idUsuarioAccesoRemoto).setValue(model)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -191,7 +191,7 @@ public class RegistroUsuarioAccesoRemotoActivity extends AppCompatActivity {
                 editTextClaveUsuario.setEnabled(true);
                 editTextAsignado.setEnabled(true);
                 editTextTelefonoAsignado.setEnabled(true);
-                switchAdminRegistroAccesoRemoto.setEnabled(true);
+                switchAdmin.setEnabled(true);
             } else {
                 Toast.makeText(RegistroUsuarioAccesoRemotoActivity.this, "No gay datos que actualizar",Toast.LENGTH_LONG).show();
             }

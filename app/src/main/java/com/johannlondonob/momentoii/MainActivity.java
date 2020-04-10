@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<EntidadModel> arrayList;
     private EntidadModel entidadModel;
-    private ProgressBar progressBarActivityMain;
+    private ProgressBar progressBar;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference("entidad");
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        progressBarActivityMain = findViewById(R.id.progressBarActivityMain);
+        progressBar = findViewById(R.id.progressBarActivityMain);
 
         listView = findViewById(R.id.listView);
 
@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.add(entidadModel);
                 }
                 listView.setAdapter(new EntidadAdapter(MainActivity.this, arrayList));
-                progressBarActivityMain.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                progressBarActivityMain.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Imposible conectar con la base de datos", Toast.LENGTH_SHORT).show();
             }
         });

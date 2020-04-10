@@ -31,12 +31,12 @@ import java.util.ArrayList;
 public class AccesoRemotoDetalleActivity extends AppCompatActivity {
 
     private FloatingActionButton fabRegistrarUsuarioAccesoRemoto;
-    private ListView listViewUsuariosRemotos;
+    private ListView listView;
     private TextView textViewNombreEquipo, textViewIpPublica, textViewIpPrivada, textViewSinUsuarios;
     private String idEntidad, idAccesoRemoto, nombreEntidad, nombreEquipo, ipPublica, ipPrivada;
-    private ArrayList<UsuarioAccesoRemotoModel> listUsuarioAccesoRemoto;
+    private ArrayList<UsuarioAccesoRemotoModel> list;
     private AccesoRemotoModel model;
-    private UsuarioAccesoRemotoModel usuarioAccesoRemotoModel;
+    private UsuarioAccesoRemotoModel modelUsuario;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference referenceAccesosRemotos = database.getReference("accesos_remotos/" + idEntidad);
 
@@ -59,7 +59,7 @@ public class AccesoRemotoDetalleActivity extends AppCompatActivity {
         textViewIpPublica = findViewById(R.id.textViewIpPublicaAccesoRemotoDetalle);
         textViewIpPrivada = findViewById(R.id.textViewIpPrivadaAccesoRemotoDetalle);
         textViewSinUsuarios = findViewById(R.id.textViewMensajeUsuariosAccesoRemotoDetalle);
-        listViewUsuariosRemotos = findViewById(R.id.listViewUsuarioAccesoRemoto);
+        listView = findViewById(R.id.listViewUsuarioAccesoRemoto);
 
         if (idAccesoRemoto != null && !idAccesoRemoto.equals("")) {
             referenceAccesosRemotos = database.getReference("accesos_remotos/" + idEntidad);
@@ -96,21 +96,21 @@ public class AccesoRemotoDetalleActivity extends AppCompatActivity {
         referenceUsuariosAccesosRemotos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usuarioAccesoRemotoModel = new UsuarioAccesoRemotoModel();
-                listUsuarioAccesoRemoto = new ArrayList<>();
+                modelUsuario = new UsuarioAccesoRemotoModel();
+                list = new ArrayList<>();
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    usuarioAccesoRemotoModel = child.getValue(UsuarioAccesoRemotoModel.class);
-                    listUsuarioAccesoRemoto.add(usuarioAccesoRemotoModel);
+                    modelUsuario = child.getValue(UsuarioAccesoRemotoModel.class);
+                    list.add(modelUsuario);
                 }
 
-                if (listUsuarioAccesoRemoto.size() <= 0) {
+                if (list.size() <= 0) {
                     textViewSinUsuarios.setVisibility(View.VISIBLE);
                 } else {
                     textViewSinUsuarios.setVisibility(View.GONE);
                 }
 
-                listViewUsuariosRemotos.setAdapter(new UsuarioAccesoRemotoAdapter(AccesoRemotoDetalleActivity.this, listUsuarioAccesoRemoto));
+                listView.setAdapter(new UsuarioAccesoRemotoAdapter(AccesoRemotoDetalleActivity.this, list));
             }
 
             @Override
@@ -133,20 +133,20 @@ public class AccesoRemotoDetalleActivity extends AppCompatActivity {
             }
         });
 
-        listViewUsuariosRemotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                usuarioAccesoRemotoModel = (UsuarioAccesoRemotoModel) parent.getItemAtPosition(position);
+                modelUsuario = (UsuarioAccesoRemotoModel) parent.getItemAtPosition(position);
 
                 String idUsuarioAccesoRemoto, usuario, clave, asignadoA, telefonoAsignado;
                 boolean admin;
 
-                idUsuarioAccesoRemoto = usuarioAccesoRemotoModel.get_id();
-                usuario = usuarioAccesoRemotoModel.get_nombreUsuario();
-                clave = usuarioAccesoRemotoModel.get_claveUsuario();
-                asignadoA = usuarioAccesoRemotoModel.get_asignadoA();
-                telefonoAsignado = usuarioAccesoRemotoModel.get_telefonoAsignado();
-                admin = usuarioAccesoRemotoModel.get_admin();
+                idUsuarioAccesoRemoto = modelUsuario.get_id();
+                usuario = modelUsuario.get_nombreUsuario();
+                clave = modelUsuario.get_claveUsuario();
+                asignadoA = modelUsuario.get_asignadoA();
+                telefonoAsignado = modelUsuario.get_telefonoAsignado();
+                admin = modelUsuario.get_admin();
 
                 Intent intent = new Intent(AccesoRemotoDetalleActivity.this, RegistroUsuarioAccesoRemotoActivity.class);
                 intent.putExtra("idEntidad", idEntidad);
