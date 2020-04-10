@@ -14,3 +14,14 @@
 .cxx
 .idea
 .project
+.gitignore
+.settings
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle
+gradle
+app/.settings
+app/.classpath
+app/proguard-rules.pro
