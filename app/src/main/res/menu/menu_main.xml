@@ -7,10 +7,4 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/eliminar"
-        android:enabled="true"
-        android:icon="@drawable/ic_delete"
-        android:title="Eliminar"
-        android:visible="true" />
 </menu>

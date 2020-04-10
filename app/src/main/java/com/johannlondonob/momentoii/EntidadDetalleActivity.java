@@ -59,7 +59,11 @@ public class EntidadDetalleActivity extends AppCompatActivity {
         fabContactosEntidadDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EntidadDetalleActivity.this, idEntidad, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(EntidadDetalleActivity.this, idEntidad, Toast.LENGTH_SHORT).show();
+                Intent contactos = new Intent(EntidadDetalleActivity.this, ContactoActivity.class);
+                contactos.putExtra("idEntidad", idEntidad);
+                contactos.putExtra("nombreEntidad", nombreEntidad);
+                startActivity(contactos);
             }
         });
 
@@ -107,9 +111,6 @@ public class EntidadDetalleActivity extends AppCompatActivity {
                     onBackPressed();
                 }
             });
-        } else {
-            Toast.makeText(EntidadDetalleActivity.this, "No se obtuvo el ID del elemento previamente seleccionado", Toast.LENGTH_SHORT).show();
-            onBackPressed();
         }
     }
 
