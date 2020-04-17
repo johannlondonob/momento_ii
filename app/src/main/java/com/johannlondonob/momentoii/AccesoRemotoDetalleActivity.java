@@ -62,7 +62,7 @@ public class AccesoRemotoDetalleActivity extends AppCompatActivity {
         listView = findViewById(R.id.listViewUsuarioAccesoRemoto);
 
         if (idAccesoRemoto != null && !idAccesoRemoto.equals("")) {
-            referenceAccesosRemotos = database.getReference("accesos_remotos/" + idEntidad);
+            referenceAccesosRemotos = database.getReference("accesos_remotos/" + idEntidad + "/"+ idAccesoRemoto + "/datos_basicos");
             referenceAccesosRemotos.child(idAccesoRemoto).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

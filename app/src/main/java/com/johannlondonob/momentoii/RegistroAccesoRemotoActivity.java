@@ -33,6 +33,7 @@ public class RegistroAccesoRemotoActivity extends AppCompatActivity {
     private String idEntidad, idAccesoRemoto;
     private AccesoRemotoModel model;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference reference = database.getReference("accesos_remotos/" + idEntidad + "/" + idAccesoRemoto + "/datos_basicos");
     private boolean actualizar = false;
 
     @Override
@@ -66,7 +67,6 @@ public class RegistroAccesoRemotoActivity extends AppCompatActivity {
         }
 
         RegistroAccesoRemotoActivity.this.setTitle("Nuevo remoto en " + nombreEntidad);
-        final DatabaseReference reference = database.getReference("accesos_remotos/" + idEntidad);
 
         fabRegistrarAccesoRemoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +89,7 @@ public class RegistroAccesoRemotoActivity extends AppCompatActivity {
 
                     if (idAccesoRemoto != null) {
                         model = new AccesoRemotoModel(idAccesoRemoto, idEntidad, nombreEquipo, ipPublica, ipPrivada);
+                        reference = database.getReference("accesos_remotos/" + idEntidad + "/" + idAccesoRemoto + "/datos_basicos");
                         reference.child(idAccesoRemoto).setValue(model)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
